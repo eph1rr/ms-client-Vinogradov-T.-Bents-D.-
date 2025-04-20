@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="you">
+        <createTable tableName="client_type">
+            <column name="key" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="you">
+        <createTable tableName="client">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="short_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date_time" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="update_date_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_type_key" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inn" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="you">
+        <addForeignKeyConstraint
+                baseTableName="client"
+                baseColumnNames="client_type_key"
+                constraintName="fk_client_type"
+                referencedTableName="client_type"
+                referencedColumnNames="key"/>
+    </changeSet>
+
+    <!-- Добавим два значения: IP и UL -->
+    <changeSet id="4" author="you">
+        <insert tableName="client_type">
+            <column name="key" value="IP"/>
+            <column name="name" value="Индивидуальный предприниматель"/>
+        </insert>
+        <insert tableName="client_type">
+            <column name="key" value="UL"/>
+            <column name="name" value="Юридическое лицо"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
