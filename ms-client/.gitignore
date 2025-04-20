@@ -1,0 +1,51 @@
+# Игнорируем целевую папку Maven (результаты сборки)
+target/
+
+# Игнорируем Maven Wrapper кроме jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Игнорируем .mvn папку целиком, кроме wrapper
+.mvn/
+!.mvn/wrapper/
+
+# Исключаем большой CSV-файл, превышающий лимит GitHub
+src/main/resources/db/data/clients.csv
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# STS (Spring Tool Suite)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Логи
+*.log
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# JMeter сценарии
+*.jmx
+
+# Документы и прочее
+HELP.md
